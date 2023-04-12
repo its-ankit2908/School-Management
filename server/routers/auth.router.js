@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 const User = require("../models/userSchema");
 
 const router = express.Router();
@@ -7,7 +8,7 @@ const router = express.Router();
 // todo: Login to the system
 router.post("/login",async (req,res)=>{
     try {
-
+        let token;
         const {email,password,role} = req.body;
 
         if(!email || !password){
@@ -24,6 +25,12 @@ router.post("/login",async (req,res)=>{
                 res.status(502).json({"error":"Invalid Credentials"})
 
             }else{
+
+                token = await userExist.generateAuthToken();
+                res.cookie("jwttoken",token,{
+                    expires:new Date(Date.now() + 25892000000),
+                    httpOnly:true
+                });
 
                 // login user data
                 const userData = await User.findOne({email});

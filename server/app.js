@@ -1,10 +1,8 @@
 const express = require("express");
-const app =new express();
+const app = new express();
 
 // ! env configuration
 require("dotenv").config()
-
-
 
 //! Database configuration
 require("./db/conn");
@@ -13,9 +11,14 @@ require("./db/conn");
 //! PORT configuration
 const port = process.env.PORT || 8000;
 
-// !Routing configuaration
+
+// !JSON config
 app.use(express.json());
+
+
+// !Routing configuration
 app.use(require("./routers/user.router"));
+app.use(require("./routers/auth.router"));
 
 
 // middleware example

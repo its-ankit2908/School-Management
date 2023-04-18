@@ -77,6 +77,7 @@ router.post("/register",async (req,res)=>{
         const user = new User(req.body);
         if(user){
             await user.save();
+            console.log(user);
             res.status(201).json({"message":"User Registered Successfully"});
 
         }else{

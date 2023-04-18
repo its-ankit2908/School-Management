@@ -1,5 +1,6 @@
 const express = require("express");
 const app = new express();
+const cors = require('cors');
 
 // ! env configuration
 require("dotenv").config()
@@ -16,9 +17,11 @@ const port = process.env.PORT || 8000;
 app.use(express.json());
 
 
+
 // !Routing configuration
-app.use(require("./routers/user.router"));
+app.use(require("./routers/student.router"));
 app.use(require("./routers/auth.router"));
+app.use(require('./routers/class.router'));
 
 
 // middleware example

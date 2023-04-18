@@ -3,27 +3,33 @@ const mongoose = require("mongoose");
 const classSchema = mongoose.Schema({
     name:{
         type:String,
+        required:true,
+        unique:true,
     },
-    classTeacher:{
-        type:String,
-    },
+    // classTeacher:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'TEACHER'
+    // },
     classCapacity:{
         type:Number,
+        max:60,
+        min:1,
     },
     studentsCount:{
         type:String,
     },
     students:[
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"STUDENT",
-            required:true,
+            studentId:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"STUDENT",
+            }
             
         },
     ]
 
 },{timestamps:true});
 
-const classes =  mongoose.model('CLASS',classSchema);
+const Classes =  mongoose.model('CLASS',classSchema);
 
-module.exports = classes;
+module.exports = Classes;

@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(require("./routers/student.router"));
 app.use(require("./routers/auth.router"));
 app.use(require('./routers/class.router'));
+app.use(require("./routers/teacher.router"));
 
 
 // middleware example

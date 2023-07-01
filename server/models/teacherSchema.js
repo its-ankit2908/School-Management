@@ -16,6 +16,10 @@ const teacherSchema = mongoose.Schema({
         min:3,
         max:50,
     },
+    email:{
+        type:String,
+        required:true,
+    },
     gender:{
         type:String,
     },
@@ -23,8 +27,12 @@ const teacherSchema = mongoose.Schema({
         type:Number,
     },
     dob:{
+        // data should be in yyyy-mm-dd format
         type:Date,
         required:true 
+    },
+    imgUrl:{
+        type:String,
     }
 },{timestamps:true});
 

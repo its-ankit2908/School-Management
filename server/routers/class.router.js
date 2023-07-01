@@ -4,6 +4,7 @@ const Classes = require('../models/classSchema');
 
 const router = express.Router();
 
+// todo: Add class 
 router.post('/add-class',async (req,res)=>{
 
     try {
@@ -30,7 +31,7 @@ router.post('/add-class',async (req,res)=>{
     }
 });
 
-
+// todo: get classes
 router.get('/get-class',async (req,res)=>{
     
     try {
@@ -47,7 +48,27 @@ router.get('/get-class',async (req,res)=>{
     
 });
 
+// todo: get class by id
+router.get('/get-class/:id',async (req,res)=>{
 
+    const classId = req.params.id;
+    try {
+
+        const classDetails = await Classes.findById(classId);
+        if(classDetails.length > 0){
+            
+            res.status(201).json({class:classDetails});
+        }else{
+            res.status(201).json({message:"No class Found"});
+        }
+        
+    } catch (error) {
+        res.status(500).json({error:"Something went wrong."});
+    }
+    
+});
+
+// todo: update classes
 router.put("/update-class/:id", async (req,res)=>{
 
     const classid = req.params.id;
@@ -78,6 +99,7 @@ router.put("/update-class/:id", async (req,res)=>{
 
 });
 
+// todo: delete class
 router.delete('/delete-class/:id',async (req,res)=>{
     
     const classId = req.params.id;

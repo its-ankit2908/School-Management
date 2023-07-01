@@ -13,8 +13,13 @@ const studentSchema = mongoose.Schema({
         required:true,
         trim:true
     },
+    dob:{
+        type:String,
+    },
     rollNo:{
         type:Number, 
+        unique:true,
+        required:true,
     },
     gender:{
         type:String,
@@ -26,6 +31,7 @@ const studentSchema = mongoose.Schema({
     classId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"CLASS",
+        required:true,
     },
     feeId:{
         type:mongoose.Schema.Types.ObjectId,
@@ -34,8 +40,10 @@ const studentSchema = mongoose.Schema({
     resultId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'RESULT',
+    },
+    imgUrl:{
+        type:String,
     }
-    
 
 },{timestamps:true});
 
